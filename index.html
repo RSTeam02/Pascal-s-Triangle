@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+
+<head>
+	<title>
+		Pascal's Triangle
+	</title>
+	<meta charset="utf-8">
+	<style>
+		#result {
+			display: inline-block;
+		}
+		
+		body {
+			font-family: Consolas, monospace
+		}
+	</style>
+
+</head>
+
+<body>
+	<h2>Pascal's Triangle</h2>
+	<form name="autoForm">
+		Enter depth:
+		<input type="text" id="input" name="number">
+		<input type ="button" id ="btn" value="generate">
+	</form>
+	<div id="info"></div>
+	<div id="ahref">
+		<a href="" id="download"></a>
+	</div>
+	<pre>
+		<p id = "result" align="center">
+		</p>		
+	</pre>
+	<script src="http://requirejs.org/docs/release/1.0.8/minified/require.js" data-main="import/class.js" type="text/javascript"></script>
+</body>
+
+</html>
