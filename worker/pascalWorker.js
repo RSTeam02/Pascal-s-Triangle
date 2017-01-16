@@ -7,8 +7,8 @@
 
 importScripts("../bench/measureTime.js");
 
-self.onmessage = function (input) {
-    //extract input data
+//worker takes message
+self.onmessage = function (input) {   
     startBench();
     let result = pascal(input.data);
     self.postMessage([result, stopBench()]);

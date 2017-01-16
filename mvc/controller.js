@@ -28,7 +28,7 @@ class Controller {
         }
     }
 
-    //connect model, view, evaluate with click
+    //connect evaluate with click, start worker callback => view
     evalInput() {
         document.getElementById("btn").addEventListener("click", () => {
 
