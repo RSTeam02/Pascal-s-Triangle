@@ -1,33 +1,46 @@
 class Controller {
 
-    constructor(view, fw) {
-        this.view = view;
-        this.fw = fw;
+    constructor() {
+        this.view = new View();
         this.evalInput();
     }
+
     //read string from input field
     getKeyInput() {
         return parseInt(document.autoForm.number.value);
     }
 
-    //connect model, view, evaluate with keyup
-    evalInput() {
-        document.getElementById("btn").addEventListener("click", () => {
-            let info = document.getElementById("info");
-            info.innerHTML = "";
-            try {
-                if (isNaN(this.getKeyInput())) {
-                    throw "input is not valid";
-                } else {
-                    let res = new Model().pascal(this.getKeyInput());
-                    this.view.displayPascal(res);
-                    this.fw.setContent(res);
-                    this.fw.createFile();
+    //send to worker for generating
+    sendToWorker(worker, output, callback) {
+
+        this.view.info("");
+        try {
+            if (isNaN(this.getKeyInput())) {
+                throw "input is not valid";
+            } else {
+                worker.postMessage(this.getKeyInput());
+                worker.onmessage = (e) => {
+                    callback(e.data);
                 }
-            } catch (error) {
-                info.innerHTML = error;
             }
-        });
+        } catch (error) {
+            this.view.info(error);
+        }
     }
 
+    //connect model, view, evaluate with click
+    evalInput() {
+        document.getElementById("btn").addEventListener("click", () => {
+
+            let fw = new Filewriter();
+            let output = "";
+            let worker = new Worker("worker/pascalWorker.js");
+            this.sendToWorker(worker, output, (res) => {
+                this.view.displayPascal(res[0]);
+                this.view.info(`Elapsed Time: ${res[1]}`);
+                fw.setContent(res[0]);
+                fw.createFile();
+            });
+        });
+    }
 }
