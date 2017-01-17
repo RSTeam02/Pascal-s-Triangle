@@ -10,7 +10,6 @@ class Filewriter {
     createFile() {
         let fileName = "resultPascal.txt";
         let link = "";
-
         link = document.getElementById("download");
         link.download = fileName;
         link.innerHTML = "Download Pascal's Triangle";

@@ -12,8 +12,6 @@ class Controller {
 
     //send to worker for generating
     sendToWorker(worker, output, callback) {
-
-        this.view.info("");
         try {
             if (isNaN(this.getKeyInput())) {
                 throw "input is not valid";
@@ -31,7 +29,7 @@ class Controller {
     //connect evaluate with click, start worker callback => view
     evalInput() {
         document.getElementById("btn").addEventListener("click", () => {
-
+            this.view.info("");
             let fw = new Filewriter();
             let output = "";
             let worker = new Worker("worker/pascalWorker.js");

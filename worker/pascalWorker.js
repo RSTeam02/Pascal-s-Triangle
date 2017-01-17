@@ -7,20 +7,19 @@
 
 importScripts("../bench/measureTime.js");
 
-//worker takes message
-self.onmessage = function (input) {   
+//worker takes/post message
+self.onmessage = function (input) {
     startBench();
     let result = pascal(input.data);
     self.postMessage([result, stopBench()]);
     self.close();
 }
 
-
 // auto space trimmer for numbers with n - digits
-function autoSpace(max) {
+function autoSpace(max, div = 1) {
     let subSpace = "";
-    for (let i = 0; i <= max.toString().length; i++) {
-        subSpace += "\u2000";
+    for (let i = 0; i <= Math.floor(max.toString().length / div); i++) {
+        subSpace += "\u0020";
     }
     return subSpace;
 }
@@ -46,8 +45,18 @@ function pascal(input) {
     //output with autospacing
     for (let i = 0; i < res.length; i++) {
         allRowStr += "\r\n";
+        let shift = 0;
+        (maxVal.toString().length % 2 === 0)
+            ? shift = 2
+            : shift = 1;
+
+        for (let k = input - i; k >= 0; k--) {
+            allRowStr += `${this.autoSpace(maxVal, 2)}`;
+        }
+        
         for (let j = 0; j < res[i].length; j++) {
-            allRowStr += (`${this.autoSpace(maxVal)}${res[i][j]}`).slice(-maxVal.toString().length - 1);
+            maxVal.toString().length
+            allRowStr += (`${this.autoSpace(maxVal)}${res[i][j]}`).slice(-maxVal.toString().length - shift);
         }
     }
     return allRowStr;
