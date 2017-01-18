@@ -16,7 +16,7 @@ class Controller {
             if (isNaN(this.getKeyInput()) || this.getKeyInput() <= 0) {
                 throw "input is not valid";
             } else {
-                worker.postMessage(this.getKeyInput());
+                worker.postMessage(parseInt(this.getKeyInput()));
                 worker.onmessage = (e) => {
                     callback(e.data);
                 }
