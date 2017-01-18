@@ -7,13 +7,13 @@ class Controller {
 
     //read string from input field
     getKeyInput() {
-        return parseInt(document.autoForm.number.value);
+        return document.autoForm.number.value;
     }
 
     //send to worker for generating
     sendToWorker(worker, callback) {
         try {
-            if (isNaN(this.getKeyInput()) && this.getKeyInput() > 0) {
+            if (isNaN(this.getKeyInput()) || this.getKeyInput() <= 0) {
                 throw "input is not valid";
             } else {
                 worker.postMessage(this.getKeyInput());
