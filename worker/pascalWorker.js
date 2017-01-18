@@ -15,6 +15,7 @@ self.onmessage = function (input) {
     self.close();
 }
 
+
 // auto space trimmer for numbers with n - digits
 function autoSpace(max, div = 1) {
     let subSpace = "";
@@ -26,10 +27,9 @@ function autoSpace(max, div = 1) {
 
 function pascal(input) {
     let result = "";
-    let allRowStr = "";
     let maxVal = 0;
     let res = [];
-
+    let allRowStr = "";
     // left, right edges are 1, else calc sums between neighbours
     for (let i = 0; i < input; i++) {
         res[i] = [];
@@ -44,21 +44,14 @@ function pascal(input) {
     }
     //output with autospacing
     for (let i = 0; i < res.length; i++) {
-        allRowStr += "\r\n";
-        let shift = 0;
-        (maxVal.toString().length % 2 === 0)
-            ? shift = 2
-            : shift = 1;
-
+        let maxValLen = maxVal.toString().length;
         for (let k = input - i - 1; k > 0; k--) {
             allRowStr += `${this.autoSpace(maxVal, 2)}`;
         }
-
         for (let j = 0; j < res[i].length; j++) {
-            (j !== 0)
-                ? allRowStr += (`${this.autoSpace(maxVal)}${res[i][j]}`).slice(-maxVal.toString().length - shift)
-                : allRowStr += (`${res[i][j]}`);
+            allRowStr += (`${this.autoSpace(maxVal)}${res[i][j]}`).slice(-maxValLen - (2 - maxValLen % 2));
         }
+        allRowStr += "\r\n";
     }
     return allRowStr;
 }
