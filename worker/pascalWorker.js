@@ -50,13 +50,14 @@ function pascal(input) {
             ? shift = 2
             : shift = 1;
 
-        for (let k = input - i; k >= 0; k--) {
+        for (let k = input - i - 1; k > 0; k--) {
             allRowStr += `${this.autoSpace(maxVal, 2)}`;
         }
-        
+
         for (let j = 0; j < res[i].length; j++) {
-            maxVal.toString().length
-            allRowStr += (`${this.autoSpace(maxVal)}${res[i][j]}`).slice(-maxVal.toString().length - shift);
+            (j !== 0)
+                ? allRowStr += (`${this.autoSpace(maxVal)}${res[i][j]}`).slice(-maxVal.toString().length - shift)
+                : allRowStr += (`${res[i][j]}`);
         }
     }
     return allRowStr;
