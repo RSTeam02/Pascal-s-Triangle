@@ -7,14 +7,16 @@
 
 importScripts("../bench/measureTime.js");
 
-//worker takes/post message
+//worker takes/post message, callbacks => input => arr => post
+startBench();
 self.onmessage = function (input) {
-    startBench();
-    let result = pascal(input.data);
-    self.postMessage([result, stopBench()]);
+    pascal(input.data, function (callArr) {
+        strOut(callArr, function (callStr) {
+            self.postMessage([callStr, stopBench()]);
+        });
+    });
     self.close();
 }
-
 
 // auto space trimmer for numbers with n - digits
 function autoSpace(max, div = 1) {
@@ -25,11 +27,10 @@ function autoSpace(max, div = 1) {
     return subSpace;
 }
 
-function pascal(input) {
+function pascal(input, callback) {
     let result = "";
     let maxVal = 0;
     let res = [];
-    let allRowStr = "";
     // left, right edges are 1, else calc sums between neighbours
     for (let i = 0; i < input; i++) {
         res[i] = [];
@@ -42,16 +43,27 @@ function pascal(input) {
             }
         }
     }
+    callback([res, maxVal, input]);
+}
+
+
+function strOut(resArr, callback) {
+    let allRowStr = "";
+    let res = resArr[0];
+    let maxVal = resArr[1]
+    let maxValLen = resArr[1].toString().length;
+    let input = resArr[2]
     //output with autospacing
     for (let i = 0; i < res.length; i++) {
-        let maxValLen = maxVal.toString().length;
         for (let k = input - i - 1; k > 0; k--) {
             allRowStr += `${this.autoSpace(maxVal, 2)}`;
         }
         for (let j = 0; j < res[i].length; j++) {
-            allRowStr += (`${this.autoSpace(maxVal)}${res[i][j]}`).slice(-maxValLen - (2 - maxValLen % 2));
+            (j === 0)
+                ? allRowStr += res[i][j]
+                : allRowStr += (`${this.autoSpace(maxVal)}${res[i][j]}`).slice(-maxValLen - (2 - maxValLen % 2));
         }
         allRowStr += "\r\n";
     }
-    return allRowStr;
+    callback(allRowStr);
 }
