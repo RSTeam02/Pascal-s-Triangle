@@ -2,18 +2,17 @@
  * 
  * @author rsTeam02
  * Pascal Triangle Impl. as WebWorker
- * nested callback => bad practice
+ * 
  */
 
 importScripts("../bench/measureTime.js");
 
 //worker takes/post message, callbacks => input => arr => post
-startBench();
+
 self.onmessage = function (input) {
-    pascal(input.data, function (callArr) {
-        strOut(callArr, function (callStr) {
-            self.postMessage([callStr, stopBench()]);
-        });
+    startBench();
+    pascal(input.data, function (cb) {
+        self.postMessage([cb, stopBench()]);
     });
     self.close();
 }
@@ -38,21 +37,19 @@ function pascal(input, callback) {
             (j === 0 || j === i)
                 ? res[i][j] = 1
                 : res[i][j] = res[i - 1][j - 1] + res[i - 1][j];
-            if (input - 1 === i) {
-                maxVal = res[i][Math.floor(i / 2)];
-            }
+        }
+        if (input - 1 === i) {
+            maxVal = res[i][Math.floor(i / 2)];
         }
     }
-    callback([res, maxVal, input]);
+    callback(strOutput(res, input, maxVal));
 }
 
 
-function strOut(resArr, callback) {
+function strOutput(res, input, maxVal) {
     let allRowStr = "";
-    let res = resArr[0];
-    let maxVal = resArr[1]
-    let maxValLen = resArr[1].toString().length;
-    let input = resArr[2]
+    let maxValLen = maxVal.toString().length;
+
     //output with autospacing
     for (let i = 0; i < res.length; i++) {
         for (let k = input - i - 1; k > 0; k--) {
@@ -65,5 +62,5 @@ function strOut(resArr, callback) {
         }
         allRowStr += "\r\n";
     }
-    callback(allRowStr);
+    return allRowStr;
 }

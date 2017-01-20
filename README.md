@@ -6,4 +6,4 @@
 + time measurer added
 + update 18.01: triangle as txt download link, correct spacing (isosceles triangle)
 + update 17.01: html align center removed => all (sub)spaces via "\u0020"
-+ update 19.01: nested callbacks for input, array, post (pascalWorker)
++ update 20.01: callback for post (WebWorker)
