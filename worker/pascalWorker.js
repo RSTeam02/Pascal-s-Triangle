@@ -2,7 +2,7 @@
  * 
  * @author rsTeam02
  * Pascal Triangle Impl. as WebWorker
- * 
+ * nested callback => bad practice
  */
 
 importScripts("../bench/measureTime.js");
