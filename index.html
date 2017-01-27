@@ -3,7 +3,7 @@
 
 <head>
 	<title>
-		Pascal's Triangle
+		Pascal's and Sierpinski's Triangle
 	</title>
 	<meta charset="utf-8">
 	<style>
@@ -19,11 +19,18 @@
 </head>
 
 <body>
-	<h2>Pascal's Triangle</h2>
+	<h2>Pascal's and Sierpinski's Triangle</h2>
 	<form name="autoForm">
-		Enter depth:
-		<input type="text" id="input" name="number">
-		<input type ="button" id ="btn" value="generate">
+		<fieldset>
+			<legend>Enter depth</legend>
+			<input type="text" id="input" name="number">
+			<input type="button" id="btn" value="generate">
+		</fieldset>
+		<fieldset>
+			<legend>Mode</legend>
+			<input class="rbSet" type="radio" id="pascal" name="format" checked>Pascal</input>
+			<input class="rbSet" type="radio" id="sierpinski" name="format">Sierpinski</input>
+		</fieldset>
 	</form>
 	<div id="info"></div>
 	<div id="ahref">

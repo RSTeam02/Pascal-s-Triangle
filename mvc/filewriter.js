@@ -8,11 +8,11 @@ class Filewriter {
     }
 
     createFile() {
-        let fileName = "resultPascal.txt";
+        let fileName = "result.txt";
         let link = "";
         link = document.getElementById("download");
         link.download = fileName;
-        link.innerHTML = "Download Pascal's Triangle";
+        link.innerHTML = "Download as result.txt";
         link.href = window.URL.createObjectURL(this.blob);
         document.getElementById("ahref").appendChild(link);
     }

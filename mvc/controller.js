@@ -3,6 +3,7 @@ class Controller {
     constructor() {
         this.view = new View();
         this.evalInput();
+        this.classRbSet = document.getElementsByClassName("rbSet");
     }
 
     //read string from input field
@@ -16,7 +17,8 @@ class Controller {
             if (isNaN(this.getKeyInput()) || this.getKeyInput() <= 0) {
                 throw "input is not valid";
             } else {
-                worker.postMessage(parseInt(this.getKeyInput()));
+                let select = document.getElementById("select");
+                worker.postMessage([this.mode(), parseInt(this.getKeyInput())]);
                 worker.onmessage = (e) => {
                     callback(e.data);
                 }
@@ -26,6 +28,21 @@ class Controller {
         }
     }
 
+    mode() {
+        let pascal = true;
+        (document.getElementById("pascal").checked)
+            ? pascal = true
+            : pascal = false;
+        return pascal;
+    }
+/*
+    btnListener() {
+        for (let i = 0; i < this.classRbSet.length; i++) {
+            this.classRbSet[i].addEventListener("click", () => {
+                this.mode();
+            });
+        }
+    }*/
     //connect evaluate with click, start worker callback => view
     evalInput() {
         document.getElementById("btn").addEventListener("click", () => {
