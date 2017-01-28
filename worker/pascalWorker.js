@@ -41,7 +41,7 @@ function pascal(input, callback) {
                 resSierp[i][j] = resPascal[i][j] = 1;
             } else {
                 resPascal[i][j] = resPascal[i - 1][j - 1] + resPascal[i - 1][j];
-                resSierp[i][j] = resSierp[i - 1][j - 1] % Math.pow(10, 10) + resSierp[i - 1][j] % Math.pow(10, 10);
+                resSierp[i][j] = resSierp[i - 1][j - 1] % Math.pow(10, 15) + resSierp[i - 1][j] % Math.pow(10, 15);
             }
         }
         if (input[1] - 1 === i) {
@@ -49,11 +49,11 @@ function pascal(input, callback) {
         }
     }
     (!input[0])
-        ? callback(sierpinskiOutput(resSierp, input[1], maxVal))
+        ? callback(sierpinskiOutput(resSierp, input[1]))
         : callback(pascalOutput(resPascal, input[1], maxVal));
 }
 
-function sierpinskiOutput(res, input, maxVal) {
+function sierpinskiOutput(res, input) {
     let allRowStr = "";
 
     for (let i = 0; i < res.length; i++) {

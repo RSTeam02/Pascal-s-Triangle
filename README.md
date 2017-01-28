@@ -8,4 +8,4 @@
 + update 17.01: html align center removed => all (sub)spaces via "\u0020"
 + update 20.01: callback for post (WebWorker)
 + update 27.01: sierpinski mode <= 32 depth
-+ update 28.01: sierpinski mode > 32 depth fixed => prevent big integers (rounding errors) with %
++ update 28.01: sierpinski mode > 32 depth fixed => prevent big integers (rounding errors) with %10^15
