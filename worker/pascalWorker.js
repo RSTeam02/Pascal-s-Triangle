@@ -41,7 +41,7 @@ function pascal(input, callback) {
                 resSierp[i][j] = resPascal[i][j] = 1;
             } else {
                 resPascal[i][j] = resPascal[i - 1][j - 1] + resPascal[i - 1][j];
-                resSierp[i][j] = resSierp[i - 1][j - 1] % Math.pow(10, 15) + resSierp[i - 1][j] % Math.pow(10, 15);
+                resSierp[i][j] = resSierp[i - 1][j - 1] % 10 + resSierp[i - 1][j] % 10;
             }
         }
         if (input[1] - 1 === i) {
