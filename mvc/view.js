@@ -1,6 +1,6 @@
 class View {
 
-    displayPascal(str) {        
+    displayPascal(str) {
         document.getElementById("result").innerHTML = str;
     }
 

@@ -27,25 +27,30 @@ function autoSpace(max, div = 1) {
 }
 
 function pascal(input, callback) {
-    let result = "";
+    let resPascalult = "";
     let maxVal = 0;
-    let res = [];
-    
+    let resPascal = [];
+    let resSierp = [];
+
     // left, right edges are 1, else calc sums between neighbours
     for (let i = 0; i < input[1]; i++) {
-        res[i] = [];
+        resPascal[i] = [];
+        resSierp[i] = [];
         for (let j = 0; j <= i; j++) {
-            (j === 0 || j === i)
-                ? res[i][j] = 1
-                : res[i][j] = res[i - 1][j - 1] + res[i - 1][j];
+            if (j === 0 || j === i) {
+                resSierp[i][j] = resPascal[i][j] = 1;
+            } else {
+                resPascal[i][j] = resPascal[i - 1][j - 1] + resPascal[i - 1][j];
+                resSierp[i][j] = resSierp[i - 1][j - 1] % Math.pow(10, 10) + resSierp[i - 1][j] % Math.pow(10, 10);
+            }
         }
         if (input[1] - 1 === i) {
-            maxVal = res[i][Math.floor(i / 2)];
+            maxVal = resPascal[i][Math.floor(i / 2)];
         }
-    }    
+    }
     (!input[0])
-        ? callback(sierpinskiOutput(res, input[1], maxVal))
-        : callback(pascalOutput(res, input[1], maxVal));
+        ? callback(sierpinskiOutput(resSierp, input[1], maxVal))
+        : callback(pascalOutput(resPascal, input[1], maxVal));
 }
 
 function sierpinskiOutput(res, input, maxVal) {
