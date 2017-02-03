@@ -9,4 +9,4 @@
 + update 20.01: callback for post (WebWorker)
 + update 27.01: sierpinski mode <= 32 depth
 + update 28.01: sierpinski mode > 32 depth fixed => prevent big integers (rounding errors), only last digit req (% 10)
-+ update 03.02: UI improvements range slider for choosing the order of sierpinski triangle up to 12.
++ update 03.02: UI improvements, range slider for choosing the order of sierpinski triangle up to 12.
