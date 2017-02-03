@@ -7,5 +7,9 @@ class View {
     info(str) {
         document.getElementById("info").innerHTML = str;
     }
+    
+    inputInfo(str) {
+        document.getElementById("inputInfo").innerHTML = str;
+    }
 
 }
