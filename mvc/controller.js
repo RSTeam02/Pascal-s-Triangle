@@ -68,13 +68,15 @@ class Controller {
                 seq.then(function (res) {
                     $("#inputInfo").html(`Elapsed Time: ${res.elapsed.hms}`);
                     return res;
-                }).then(setTimeout(() => {
-                    $("#result").html(res.triangle);
+                }).then(() => {
+                    setTimeout(function () {
+                        $("#result").html(res.triangle);
+                    }, res.elapsed.ms);
                     return res
                 }).then(() => {
                     fw.setContent(res.triangle);
                     fw.createFile();
-                }, res.elapsed.ms))
+                });
             });
         });
     }
