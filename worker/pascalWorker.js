@@ -12,7 +12,11 @@ importScripts("../bench/measureTime.js");
 self.onmessage = function (input) {
     startBench();
     pascal(input.data, function (cb) {
-        self.postMessage([cb, stopBench()]);
+        result = {
+            triangle: cb,
+            elapsed: stopBench()
+        }
+        self.postMessage(result);
     });
     self.close();
 }
@@ -33,7 +37,7 @@ function pascal(input, callback) {
     let resSierp = [];
 
     // left, right edges are 1, else calc sums between neighbours
-    for (let i = 0; i < input[1]; i++) {
+    for (let i = 0; i < input.value; i++) {
         resPascal[i] = [];
         resSierp[i] = [];
         for (let j = 0; j <= i; j++) {
@@ -44,13 +48,13 @@ function pascal(input, callback) {
                 resSierp[i][j] = resSierp[i - 1][j - 1] % 10 + resSierp[i - 1][j] % 10;
             }
         }
-        if (input[1] - 1 === i) {
+        if (input.value - 1 === i) {
             maxVal = resPascal[i][Math.floor(i / 2)];
         }
     }
-    (!input[0])
-        ? callback(sierpinskiOutput(resSierp, input[1]))
-        : callback(pascalOutput(resPascal, input[1], maxVal));
+    (!input.mode)
+        ? callback(sierpinskiOutput(resSierp, input.value))
+        : callback(pascalOutput(resPascal, input.value, maxVal));
 }
 
 function sierpinskiOutput(res, input) {

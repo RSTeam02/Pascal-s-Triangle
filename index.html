@@ -22,15 +22,14 @@
 	<h2>Pascal's and Sierpinski's Triangle</h2>
 	<form name="autoForm">
 		<fieldset>
-			<legend id = "inputInfo">Enter number of lines</legend>            
-			<input class ="inputType" type="hidden" id="input" name="number">
-			<input class ="inputType" type="hidden" min="2" max="12" value="2" step="1" id="slider" name ="number">
-			<input type="button" id="btn" value="generate">
+			<legend id = "inputInfo">Range-Slider</legend>			
+			<input class ="inputType" type="range" value="2" step="1" id="slider" name ="number">
+			
 		</fieldset>
 		<fieldset>
 			<legend>Mode</legend>
-			<input class="rbSet" type="radio" id="pascal" name="format" checked>Pascal</input>
-			<input class="rbSet" type="radio" id="sierpinski" name="format">Sierpinski</input>
+			<input class="rbSet" type="radio" id="pascal" name="format" value ="Lines" checked>Pascal</input>
+			<input class="rbSet" type="radio" id="sierpinski" name="format" value="Order">Sierpinski</input>
 		</fieldset>
 	</form>
 	<div id="info"></div>

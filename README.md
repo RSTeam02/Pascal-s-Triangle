@@ -4,6 +4,8 @@
 + iterative solution with autospacing between operands (HTML)
 + now as WebWorker
 + time measurer added
++ 18.05.2017: text input removed, range slider only, Promise: sequence of processes 
+  (calc elapsed time => delay: (display to DOM => create textfile))
 + update 17.01: html align center removed => all (sub)spaces via "\u0020"
 + update 18.01: triangle as txt download link, correct spacing (isosceles triangle)
 + update 20.01: callback for post (WebWorker)
