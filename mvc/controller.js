@@ -62,21 +62,19 @@ class Controller {
             let fw = new Filewriter();
             let worker = new Worker("worker/pascalWorker.js");
             this.sendToWorker(worker, (res) => {
-                var seq = new Promise(function (resolve, reject) {
-                    resolve(res);
-                });
-                seq.then(function (res) {
+                var seq = new Promise(function (result, err) {
+                    result(res);
+                    err();
+                }).then(() => {
                     $("#inputInfo").html(`Elapsed Time: ${res.elapsed.hms}`);
-                    return res;
                 }).then(() => {
                     setTimeout(function () {
                         $("#result").html(res.triangle);
                     }, res.elapsed.ms);
-                    return res
                 }).then(() => {
                     fw.setContent(res.triangle);
                     fw.createFile();
-                });
+                }, (err) => { $("#inputInfo").html("Input error") });
             });
         });
     }
