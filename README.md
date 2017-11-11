@@ -1,5 +1,7 @@
 # Pascal-s-and-Sierpinski-s Triangle
 
+
++ use native import/export module, hosted as github page: https://rsteam02.github.io/Pascal-s-Triangle/  
 + enter a depth to generate the pascal's triangle
 + iterative solution with autospacing between operands (HTML)
 + now as WebWorker

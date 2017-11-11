@@ -1,7 +1,7 @@
 
 //class for download as plain text
 
-class Filewriter {
+export class Filewriter {
 
     setContent(input) {
         this.blob = new Blob([input], { type: 'text/plain' });

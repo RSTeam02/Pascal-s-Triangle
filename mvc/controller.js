@@ -1,4 +1,6 @@
-class Controller {
+import { Filewriter } from "./filewriter.js";
+
+export class Controller {
 
     constructor() {
         this.setting();
@@ -57,7 +59,7 @@ class Controller {
         $("#slider").on("input", () => {
             $("#inputInfo").html(`${$("input:radio[name='format']:checked").val()}: ${$("#slider").val()}`);
         });
-        $("#slider").on("mouseup keyup", () => {
+        $("#slider").on("click keyup", () => {
             $("#inputInfo").html("");
             let fw = new Filewriter();
             let worker = new Worker("worker/pascalWorker.js");
