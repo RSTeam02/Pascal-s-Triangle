@@ -66,7 +66,7 @@ function pascal(input, callback) {
       arr2d[i][j] = n_over_k(i,j);      
     }
     if(i == input -1){
-        maxVal = n_over_k(input,parseInt(j/2));
+        maxVal = n_over_k(input-1,parseInt(j/2));
     }
 }
    
