@@ -56,7 +56,7 @@ function autoSpace(max, div = 1) {
         ? callback(sierpinskiOutput(resSierp, input.value))
         : callback(pascalOutput(resPascal, input.value, maxVal));
 }*/
-
+//test
 function pascal(input, callback) {
     
   let arr2d = new Array(input);
