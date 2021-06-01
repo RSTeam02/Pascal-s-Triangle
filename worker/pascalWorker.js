@@ -63,11 +63,11 @@ function pascal(input, callback) {
   for (let i =0; i < input.value; i++){    
     arr2d[i] = [];
     for(let j =0; j < i+1; j++){
-      arr2d[i][j] = parseInt(n_over_k(i,j));      
-    }
-    if(i == input.value -1){
+      arr2d[i][j] = parseInt(n_over_k(i,j));
+      if(i == input.value -1){
         maxVal = n_over_k(i,parseInt(j/2));
-    }
+      }
+    }   
   }   
   (!input.mode)
     ? callback(sierpinskiOutput(arr2d, input.value))
