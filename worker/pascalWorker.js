@@ -60,12 +60,12 @@ function autoSpace(max, div = 1) {
 function pascal(input, callback) {
   let maxVal=0;  
   let arr2d = new Array(input.value);
-  for (let i =0; i < input; i++){    
+  for (let i =0; i < input.value; i++){    
     arr2d[i] = [];
     for(let j =0; j < i+1; j++){
       arr2d[i][j] = parseInt(n_over_k(i,j));      
     }
-    if(i == input -1){
+    if(i == input.value -1){
         maxVal = n_over_k(i,parseInt(j/2));
     }
 }
@@ -95,7 +95,7 @@ function sierpinskiOutput(res, input) {
             allRowStr += "\u0020";
         }
         for (let j = 0; j < res[i].length; j++) {
-            (res[i][j] % 2 === 0)
+            (j&(i-j))
                 ? allRowStr += "\u0020\u0020"
                 : allRowStr += "\u2206\u0020";
         }
