@@ -30,7 +30,7 @@ function autoSpace(max, div = 1) {
     return subSpace;
 }
 
-function pascal(input, callback) {
+/*function pascal(input, callback) {
     let resPascalult = "";
     let maxVal = 0;
     let resPascal = [];
@@ -55,6 +55,18 @@ function pascal(input, callback) {
     (!input.mode)
         ? callback(sierpinskiOutput(resSierp, input.value))
         : callback(pascalOutput(resPascal, input.value, maxVal));
+}*/
+
+function n_over_k(n, k){
+  return fact(n)/(fact(k)*fact(n-k));
+}
+
+function fact(n){
+  let res = 1;
+  for(let i =1;i<=n; i++){
+    res *=i;
+  }
+  return res;
 }
 
 function sierpinskiOutput(res, input) {
