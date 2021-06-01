@@ -57,6 +57,20 @@ function autoSpace(max, div = 1) {
         : callback(pascalOutput(resPascal, input.value, maxVal));
 }*/
 
+function pascal(input, callback) {
+    
+  let arr2d = new Array(input);
+  for (let i =0; i < input; i++){    
+    arr2d[i] = new Array(input);
+    for(let j =0; j < i+1; j++){
+      arr2d[i][j] = n_over_k(i,j);      
+    }    
+  }
+  (!input.mode)
+    ? callback(sierpinskiOutput(arr2d, input.value))
+    : callback(pascalOutput(arr2d, input.value, maxVal));
+}
+
 function n_over_k(n, k){
   return fact(n)/(fact(k)*fact(n-k));
 }
