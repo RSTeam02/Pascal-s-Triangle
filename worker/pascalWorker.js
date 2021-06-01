@@ -59,14 +59,14 @@ function autoSpace(max, div = 1) {
 //test2
 function pascal(input, callback) {
   let maxVal=0;  
-  let arr2d = new Array(input);
+  let arr2d = new Array(input.value);
   for (let i =0; i < input; i++){    
-    arr2d[i] = new Array(input);
+    arr2d[i] = [];
     for(let j =0; j < i+1; j++){
-      arr2d[i][j] = n_over_k(i,j);      
+      arr2d[i][j] = parseInt(n_over_k(i,j));      
     }
     if(i == input -1){
-        maxVal = n_over_k(input-1,parseInt(j/2));
+        maxVal = n_over_k(i,parseInt(j/2));
     }
 }
    
