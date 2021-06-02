@@ -60,20 +60,21 @@ function autoSpace(max, div = 1) {
 //Binomial Cofficient
 function pascal(input, callback){
     let maxVal = 0;
-    arr2d = []
+    let arr2d = [];
+    let iv=input.value;
 
-    for (let i = 0;  i<input.value; i++){
+    for (let i = 0;  i<iv; i++){
         arr2d[i]=[]
         for (let j = 0;  j<i+1; j++){
             arr2d[i][j]=parseInt(n_over_k(i,j));
-            if(i == input.value -1){
+            if(i == iv -1){
                 maxVal = n_over_k(i,parseInt(j/2));                
             }
         }        
     } 
     (!input.mode)
-        ? callback(sierpinskiOutput(arr2d, input.value))
-        : callback(pascalOutput(arr2d, input.value,maxVal));
+        ? callback(sierpinskiOutput(arr2d, iv))
+        : callback(pascalOutput(arr2d, iv, maxVal));
     }
 
 function n_over_k(n,k){
