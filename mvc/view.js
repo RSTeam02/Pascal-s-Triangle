@@ -1,5 +1,5 @@
 export class View{
-    viewMode(result){
+    viewOutput(result){
         $("#result").html(result);
     }    
 }
