@@ -1,5 +1,6 @@
 import { Filewriter } from "./filewriter.js";
 import { View } from "./view.js";
+import { Result } from "./result.js";
 
 export class Controller {
 
@@ -11,12 +12,13 @@ export class Controller {
 
     //send to worker for generating
     sendToWorker(worker, callback) {
-        let pascal = this.setting();        
+        let pascal = this.setting();
         let select = document.getElementById("select");
         worker.postMessage(pascal);
         worker.onmessage = (e) => {
             callback(e.data);
-        }      
+        }
+      
     }
 
     setting() {
@@ -58,6 +60,8 @@ export class Controller {
             let fw = new Filewriter();
             let view = new View();
             let worker = new Worker("worker/pascalWorker.js");
+            let output=""
+
             this.sendToWorker(worker, (res) => {
                 var seq = new Promise(function (result, err) {
                     result(res);
@@ -66,10 +70,13 @@ export class Controller {
                     $("#inputInfo").html(`Elapsed Time: ${res.elapsed.hms}`);
                 }).then(() => {
                     setTimeout(function () {
-                        view.viewMode(res.pascalArr);
+                        output = (res.pascalArr.input.mode)
+                            ? new Result(res.pascalArr).pascalOutput()
+                            : new Result(res.pascalArr).sierpinskiOutput();
+                        view.viewOutput(output);
+                        fw.setContent(output);                        
                     }, res.elapsed.ms);
                 }).then(() => {
-                    fw.setContent(res.pascalArr);
                     fw.createFile();
                 }, (err) => { $("#inputInfo").html("Input error") });
             });
