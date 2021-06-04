@@ -68,13 +68,11 @@ export class Controller {
                     err();
                 }).then(() => {
                     $("#inputInfo").html(`Elapsed Time: ${res.elapsed.hms}`);
-                }).then(() => {                
-                    output = (res.pascalArr.input.mode)
-                        ? new Result(res.pascalArr).pascalOutput()
-                        : new Result(res.pascalArr).sierpinskiOutput();
+                }).then(() => {                 
+                    output = new Result(res.pascalArr).resOutput();
                     view.viewOutput(output);
-                    fw.setContent(output); 
-                    fw.createFile()                  
+                    fw.setContent(output);
+                    fw.createFile(); 
                 }, (err) => { $("#inputInfo").html("Input error") });
             });
         });
