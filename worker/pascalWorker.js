@@ -6,7 +6,6 @@
  */
 
 importScripts("../bench/measureTime.js");
-importScripts("../n_o_k/n_o_k.js");
 
 //worker takes/post message, callbacks => input => arr => post
 
