@@ -68,16 +68,12 @@ export class Controller {
                     err();
                 }).then(() => {
                     $("#inputInfo").html(`Elapsed Time: ${res.elapsed.hms}`);
-                }).then(() => {
-                    setTimeout(function () {
-                        output = (res.pascalArr.input.mode)
-                            ? new Result(res.pascalArr).pascalOutput()
-                            : new Result(res.pascalArr).sierpinskiOutput();
-                        view.viewOutput(output);
-                        fw.setContent(output);                        
-                    }, res.elapsed.ms);
-                }).then(() => {
-                    fw.createFile();
+                }).then(() => {                
+                    output = (res.pascalArr.input.mode)
+                        ? new Result(res.pascalArr).pascalOutput()
+                        : new Result(res.pascalArr).sierpinskiOutput();
+                    view.viewOutput(output);
+                    fw.setContent(output);                   
                 }, (err) => { $("#inputInfo").html("Input error") });
             });
         });
