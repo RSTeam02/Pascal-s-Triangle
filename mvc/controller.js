@@ -1,28 +1,22 @@
 import { Filewriter } from "./filewriter.js";
+import { View } from "./view.js";
 
 export class Controller {
 
     constructor() {
+        this.view = new View();
         this.setting();
         this.evalInput();
     }
 
     //send to worker for generating
     sendToWorker(worker, callback) {
-        let pascal = this.setting();
-        try {
-            if (isNaN(pascal.value) || (pascal.value <= 0)) {
-                throw "input is not valid";
-            } else {
-                let select = document.getElementById("select");
-                worker.postMessage(pascal);
-                worker.onmessage = (e) => {
-                    callback(e.data);
-                }
-            }
-        } catch (error) {
-            $("#inputInfo").html(error);
-        }
+        let pascal = this.setting();        
+        let select = document.getElementById("select");
+        worker.postMessage(pascal);
+        worker.onmessage = (e) => {
+            callback(e.data);
+        }      
     }
 
     setting() {
@@ -62,6 +56,7 @@ export class Controller {
         $("#slider").on("click keyup", () => {
             $("#inputInfo").html("");
             let fw = new Filewriter();
+            let view = new View();
             let worker = new Worker("worker/pascalWorker.js");
             this.sendToWorker(worker, (res) => {
                 var seq = new Promise(function (result, err) {
@@ -71,10 +66,10 @@ export class Controller {
                     $("#inputInfo").html(`Elapsed Time: ${res.elapsed.hms}`);
                 }).then(() => {
                     setTimeout(function () {
-                        $("#result").html(res.triangle);
+                        view.viewMode(res.pascalArr);
                     }, res.elapsed.ms);
                 }).then(() => {
-                    fw.setContent(res.triangle);
+                    fw.setContent(res.pascalArr);
                     fw.createFile();
                 }, (err) => { $("#inputInfo").html("Input error") });
             });
