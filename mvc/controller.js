@@ -74,9 +74,10 @@ export class Controller {
                             ? new Result(res.pascalArr).pascalOutput()
                             : new Result(res.pascalArr).sierpinskiOutput();
                         view.viewOutput(output);
-                        fw.setContent(output);
-                        fw.createFile();                        
+                        fw.setContent(output);                        
                     }, res.elapsed.ms);
+                }).then(() => {
+                    fw.createFile();
                 }, (err) => { $("#inputInfo").html("Input error") });
             });
         });
