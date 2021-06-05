@@ -47,7 +47,8 @@ export class Result{
         let subsubSpace = []
         
         for (let i = 0; i < this.pascal.arr2d.length; i++) {         
-            subsubSpace = new Array(this.pascal.input.value - i - 1);        
+            subsubSpace = new Array(this.pascal.input.value - i - 1);
+            this.acgt=this.rndACGT();        
             for (let j = 0; j < this.pascal.arr2d[i].length; j++) {
                 let otf = this.outputFactory(i, j);                
                 if(j===0){                    
