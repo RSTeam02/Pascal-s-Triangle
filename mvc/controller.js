@@ -27,12 +27,16 @@ export class Controller {
             value: 0
         }
         let rSlider = document.getElementById("slider");
-        psMode.mode = $("#pascal").is(':checked');
-        if (psMode.mode) {
+        psMode.mode = $("input:radio[class='rbSet']:checked").attr("id");
+        if (psMode.mode === "pascal") {
             psMode.value = $("#slider").val();
             rSlider.max = 50;
             rSlider.min = 2;
-        } else {
+        }else if(psMode.mode === "ACGT") {        
+            psMode.value = Math.pow(2, $("#slider").val());
+            rSlider.min = 2
+            rSlider.max = 7;
+        }else {
             psMode.value = Math.pow(2, $("#slider").val());
             rSlider.min = 2;
             rSlider.max = 12;
