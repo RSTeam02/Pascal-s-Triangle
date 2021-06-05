@@ -10,26 +10,11 @@ export class Result{
         return subSpace.join("");
     }
 
-<<<<<<< HEAD
     rndACGT(){
         let rndACGT = ["A","C","G","T"];  
         let len =rndACGT.length;      
         for(let i = 0; i < len; i++){
             let j = Math.floor(Math.random()*len);            
-=======
-    /*rndACGT(){
-        let rndACGT = ["A","C","G","T"];        
-        for(let i = (rndACGT.length-1); i>=0;i--){
-            let j = Math.floor(Math.random()*rndACGT.length);          
-            [rndACGT[j],rndACGT[i]] = [rndACGT[i],rndACGT[j]];          
-        }        
-        return rndACGT;
-    }*/
-    rndACGT(){
-        let rndACGT = ["A","C","G","T"];        
-        for(let i = 0; i < rndACGT.length; i++){
-            let j = Math.floor(Math.random()*rndACGT.length);          
->>>>>>> 1d8a28665b31dadf8f04bb1af8e1dc2cde1892bf
             [rndACGT[j],rndACGT[i]] = [rndACGT[i],rndACGT[j]];          
         }        
         return rndACGT;
