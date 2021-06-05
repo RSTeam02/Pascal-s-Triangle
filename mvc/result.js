@@ -12,8 +12,8 @@ export class Result{
 
     rndACGT(){
         let rndACGT = ["A","C","G","T"];        
-        for(let i = (rndACGT.length-1); i>0;i--){
-            let j = Math.floor(Math.random()*(i+1));       
+        for(let i = (rndACGT.length-1); i>=0;i--){
+            let j = Math.floor(Math.random()*rndACGT.length);       
             let helper = rndACGT[j];
             [rndACGT[j],rndACGT[i]] = [rndACGT[i],helper];          
         }        
