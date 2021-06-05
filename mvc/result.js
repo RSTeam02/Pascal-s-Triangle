@@ -11,11 +11,11 @@ export class Result{
     }
 
     rndACGT(){
-        let rndACGT = ["A","C","G","T"];        
-        for(let i = (rndACGT.length-1); i>=0;i--){
-            let j = Math.floor(Math.random()*rndACGT.length);       
-            let helper = rndACGT[j];
-            [rndACGT[j],rndACGT[i]] = [rndACGT[i],helper];          
+        let rndACGT = ["A","C","G","T"];  
+        let len =rndACGT.length;      
+        for(let i = 0; i < len; i++){
+            let j = Math.floor(Math.random()*len);            
+            [rndACGT[j],rndACGT[i]] = [rndACGT[i],rndACGT[j]];          
         }        
         return rndACGT;
     }
