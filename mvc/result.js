@@ -23,7 +23,7 @@ export class Result{
 
     testPalindrom(){
         let pal = this.pascal.input.inputStr;       
-        pal=pal.replace(/[,\s!?.]*/gi,"").toUpperCase();
+        pal=pal.replace(/[,\s!?.:;']*/gi,"").toUpperCase();
         return (pal.split("").reverse().join("") == pal)
             ? pal.split("") : "-";
     }
