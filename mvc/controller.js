@@ -22,10 +22,14 @@ export class Controller {
     }
 
     setting() {
+
         let psMode = {
-            mode: false,
-            value: 0
+            mode: "",
+            value: 0,
+            inputStr:""
         }
+        //let checked = $(`input:radio[id='palindrom']:checked`).attr("id");
+            //console.log($("#cmdInp").val());
         let rSlider = document.getElementById("slider");
         psMode.mode = $("input:radio[class='rbSet']:checked").attr("id");
         if (psMode.mode === "pascal") {
@@ -36,10 +40,15 @@ export class Controller {
             psMode.value = Math.pow(2, $("#slider").val());
             rSlider.min = 2
             rSlider.max = 7;
-        }else {
+        }else if(psMode.mode === "sierpinski"){
             psMode.value = Math.pow(2, $("#slider").val());
             rSlider.min = 2;
             rSlider.max = 12;
+        }else{
+            psMode.value = $("#cmdInp").val().length;
+            psMode.inputStr = $("#cmdInp").val();
+            rSlider.min = 50;
+            rSlider.max = 2;
         }
         return psMode;
     }
@@ -53,19 +62,18 @@ export class Controller {
                 this.setting();
                 $("#slider").val(0);
                 $("#result").html("");
-                $('#inputInfo').html("Range-Slider");
+                $('#inputInfo').html("Range-Slider");                
             });
         }
         $("#slider").on("input", () => {
             $("#inputInfo").html(`${$("input:radio[name='format']:checked").val()}: ${$("#slider").val()}`);
         });
-        $("#slider").on("click keyup", () => {
+        $("#slider, #test").on("click keyup", () => {
             $("#inputInfo").html("");
             let fw = new Filewriter();
             let view = new View();
-            let worker = new Worker("worker/pascalWorker.js");
+            let worker = new Worker("worker/pascalWorker.js");           
             let output=""
-
             this.sendToWorker(worker, (res) => {
                 var seq = new Promise(function (result, err) {
                     result(res);
