@@ -26,10 +26,10 @@ export class Controller {
         let psMode = {
             mode: "",
             value: 0,
-            inputStr:""
+            inputStr:"",
+            sss : $('#sl').prop('checked')
         }
-        //let checked = $(`input:radio[id='palindrom']:checked`).attr("id");
-            //console.log($("#cmdInp").val());
+        
         let rSlider = document.getElementById("slider");
         psMode.mode = $("input:radio[class='rbSet']:checked").attr("id");
         if (psMode.mode === "pascal") {
@@ -62,7 +62,8 @@ export class Controller {
                 this.setting();
                 $("#slider").val(0);
                 $("#result").html("");
-                $('#inputInfo').html("Range-Slider");                
+                $('#inputInfo').html("Range-Slider");
+                //console.log($(rbSet[i].attr("id")))
             });
         }
         $("#slider").on("input", () => {
@@ -88,5 +89,13 @@ export class Controller {
                 }, (err) => { $("#inputInfo").html("Input error") });
             });
         });
+
+        /*$("#palindrom, #test").on("click", () => {
+            
+
+            let checked = $(`input:radio[id='palindrom']:checked`).attr("id");
+            console.log($("#cmdInp").val());
+           
+        });*/
     }
 }

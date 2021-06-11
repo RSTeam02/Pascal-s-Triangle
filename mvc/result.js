@@ -23,7 +23,7 @@ export class Result{
 
     testPalindrom(){
         let pal = this.pascal.input.inputStr;       
-        pal=pal.replace(/[,\s!?.:;'-]*/gi,"").toUpperCase();
+        pal=pal.replace(/[,\s!?."';:-]*/gi,"").toUpperCase();
         return (pal.split("").reverse().join("") == pal)
             ? pal.split("") : "-";
     }
@@ -35,13 +35,20 @@ export class Result{
             let aSp1 = `${this.autoSpace(maxValLen)}`;            
             return {ls: aSp2, rs:(`${aSp1}${this.pascal.arr2d[i][j]}`).slice(-maxValLen - (2 - maxValLen % 2))};            
         }else if(this.pascal.input.mode==="palindrom"){   
-            if(i<2&&j<2){
-                return {ls: "\u0020", rs:(`${this.pal[this.pascal.arr2d[i][j]-1]}\u0020`)};
+            if(this.pascal.input.sss){
+                if(i <this.pal.length-1){                    
+                    return (j==0 || j==this.pascal.arr2d[i].length-1)
+                        ?{ls: "\u0020", rs:(`${this.pal[i]}\u0020`)}                    
+                        :{ls: "\u0020", rs:`\u0020\u0020`};                    
+                }
             }else{
-                return (j<half)
-                    ? {ls: "\u0020", rs:(`${this.pal[j]}\u0020`)}                
-                    : {ls: "\u0020", rs:(`${this.pal[i-j]}\u0020`)};                
-            }            
+                if(i<2&&j<2){
+                    return {ls: "\u0020", rs:(`${this.pal[this.pascal.arr2d[i][j]-1]}\u0020`)};
+                }                                          
+            }
+            return (j<half)
+                ? {ls: "\u0020", rs:(`${this.pal[j]}\u0020`)}                
+                : {ls: "\u0020", rs:(`${this.pal[i-j]}\u0020`)};       
         }else{                
             if(j&(i-j)){
                 return {ls:"\u0020" ,rs:"\u0020\u0020"};
@@ -53,7 +60,7 @@ export class Result{
         }
     }
 
-    resOutput() {
+    resOutput() {        
         let allRowStr = "";
         let maxValLen = this.pascal.maxVal.toString().length;
         let subsubSpace = []

@@ -1,7 +1,7 @@
 # Pascal-s-and-Sierpinski-s Triangle
 
 
-
++ update 11.06.21: checkbox "only sides" puts the palindrom along the triangle sides
 + update 10.06.21: palindrom mode: parses strings, which also results the same word in reverse direction. When it's not a palindrom, it returns a "-".
 + update 04.06.21: refactoring, seperation in view, resultoutput modules
 + use native import/export module, hosted as github page: https://rsteam02.github.io/Pascal-s-Triangle/  
