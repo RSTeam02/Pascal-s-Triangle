@@ -37,7 +37,7 @@ export class Result{
         }else if(this.pascal.input.mode==="palindrom"){   
             if(this.pascal.input.sss){
                 if(i <this.pal.length-1){                    
-                    return (j==0 || j==this.pascal.arr2d[i].length-1)
+                    return (j==0 || j==i)
                         ?{ls: "\u0020", rs:(`${this.pal[i]}\u0020`)}                    
                         :{ls: "\u0020", rs:`\u0020\u0020`};                    
                 }
